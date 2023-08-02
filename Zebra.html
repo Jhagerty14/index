@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Video Link</title>
+    <style>
+        /* Style the link to make it more visible */
+        #interactive-link {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #ffffff;
+            font-size: 100px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <video width="560" height="315" controls>
+        <source src="https://www.youtube.com/watch?v=ooG15l_pCko&ab_channel=UrbanMediaTube" type="video/mp4">
+        <!-- Fallback content if video doesn't play -->
+        Your browser does not support the video tag stupid.
+    </video>
+
+    <a href="#" id="interactive-link">EXIT</a>
+
+    <script>
+        const videoPlayer = document.querySelector('video');
+        const linkAppearTime = 100; // Replace with the timestamp (in seconds) when you want the link to appear
+        const instagramURL = 'https://youtube.com/shorts/Jb4cMhEK128?feature=share'; // Replace with your Instagram profile URL
+
+        function checkTime() {
+            const currentTime = videoPlayer.currentTime;
+            if (currentTime >= linkAppearTime) {
+                document.getElementById('interactive-link').style.display = 'block';
+            } else {
+                requestAnimationFrame(checkTime);
+            }
+        }
+
+        // When the interactive link is clicked, redirect to the Instagram profile
+        document.getElementById('interactive-link').addEventListener('click', function (event) {
+            event.preventDefault();
+            window.location.href = instagramURL;
+        });
+
+        checkTime();
+    </script>
+</body>
+</html>
