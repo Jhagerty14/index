@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Instagram Video Link</title>
+</head>
+<body>
+    <!-- Replace 'your-youtube-video-id' with the actual video ID from YouTube -->
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/watch?v=ooG15l_pCko&ab_channel=UrbanMediaTube?autoplay=1" frameborder="0" allowfullscreen></iframe>
+
+    <a href="https://example.com/another-video" id="interactive-link" style="display:none;">Click on this video right now</a>
+
+    <script>
+        // Replace '30' with the timestamp (in seconds) when you want the link to appear
+        const linkAppearTime = 30;
+
+        // Replace '5000' with the time (in milliseconds) after which you want to redirect the user
+        const redirectDelay = 5000;
+
+        // Replace 'https://example.com/another-video' with the URL of the other video you want to redirect to
+        const redirectURL = 'https://youtube.com/shorts/Jb4cMhEK128?feature=share';
+
+        const videoPlayer = document.querySelector('iframe');
+
+        function checkTime() {
+            const currentTime = videoPlayer.contentWindow.document.querySelector('video').currentTime;
+            if (currentTime >= linkAppearTime) {
+                document.getElementById('interactive-link').style.display = 'block';
+                setTimeout(() => {
+                    window.location.href = redirectURL;
+                }, redirectDelay);
+            } else {
+                requestAnimationFrame(checkTime);
+            }
+        }
+
+        checkTime();
+    </script>
+</body>
+</html>
